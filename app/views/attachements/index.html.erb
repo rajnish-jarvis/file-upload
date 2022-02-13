@@ -31,7 +31,7 @@
         <td><%= link_to 'Show', attachement %>
         <%= link_to 'Edit', edit_attachement_path(attachement) %>
         <%= link_to 'Destroy', attachement, method: :delete, data: { confirm: 'Are you sure?' } %>
-          <a onclick="createZip('<%= attachement.tiny_url %>')">Compress</a>
+          <a onclick="createZip('<%= attachement.tiny_url %>')" class="pointer">Compress</a>
         </td>
       </tr>
     <% end %>

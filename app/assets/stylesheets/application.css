@@ -42,3 +42,10 @@ body{
     overflow: hidden;
     text-overflow: ellipsis;
 }
+a:hover{
+    color: #2E2F30;
+    background-color: unset !important;
+}
+.pointer{
+    cursor: pointer;
+}
