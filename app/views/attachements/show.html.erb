@@ -1,0 +1,26 @@
+<div class="container-fluid">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @attachement.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @attachement.description %>
+</p>
+  <p>
+    <strong>File Type:</strong>
+    <%= @attachement.file.blob.content_type.capitalize %>
+  </p>
+  <p>
+  <b>Original Url:</b> <a href="<%= @attachement.url %>"> <%= @attachement.url %></a>
+  <br>
+  <br>
+  <b>Tiny Url:</b> <a href="<%= @attachement.tiny_url %> " download="<%= @attachement.tiny_url %>"> <%= @attachement.tiny_url %> </a>
+</p>
+
+<%= link_to 'Edit', edit_attachement_path(@attachement) %> |
+<%= link_to 'Back', attachements_path %>
+</div>

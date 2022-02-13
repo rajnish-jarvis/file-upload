@@ -1,0 +1,32 @@
+<%= form_with(model: attachement) do |form| %>
+  <% if attachement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(attachement.errors.count, "error") %> prohibited this attachement from being saved:</h2>
+
+      <ul>
+        <% attachement.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  <div class="field">
+    <%= form.label :file %>
+    <%= form.file_field :file %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

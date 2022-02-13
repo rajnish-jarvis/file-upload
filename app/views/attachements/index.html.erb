@@ -1,0 +1,56 @@
+<% if current_user.present? %>
+  <p id="notice"><%= notice %></p>
+<div class="container-fluid">
+
+  <div class="d-flex justify-content-between">
+    <h1>Files</h1>
+    <%= link_to 'New File', new_attachement_path, class: " text-white new-attachement-btn btn btn-primary btn-sm" %>
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>File Type</th>
+      <th>Original Url</th>
+      <th>Tiny Url</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @attachements&.each do |attachement| %>
+      <tr>
+        <td><%= attachement.title %></td>
+        <td><%= attachement.description %></td>
+        <td><%= attachement.file.blob.content_type.capitalize %></td>
+        <td><div class="text-overflow">
+          <%= attachement.url %>
+        </div></td>
+        <td><%= attachement.tiny_url %></td>
+        <td><%= link_to 'Show', attachement %>
+        <%= link_to 'Edit', edit_attachement_path(attachement) %>
+        <%= link_to 'Destroy', attachement, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <a onclick="createZip('<%= attachement.tiny_url %>')">Compress</a>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+  <%= will_paginate @attachements %>
+
+  <% else %>
+  <p class="text-center not-logged-info">You are not logged please login</p>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+    function createZip(file_url) {
+        var zip = new JSZip();
+        zip.file("file_url.txt", "Uploaded file url link\n" + file_url);
+        zip.generateAsync({type:"blob"})
+            .then(function(content) {
+                saveAs(content, "example.zip");
+            });
+    }
+</script>
